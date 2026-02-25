@@ -11,7 +11,8 @@ services:
       - key: PORT
         value: "8000"
       - key: PYTHON_VERSION
-        value: "3.10"
+        value: "3.10.12"
+
 
   # ─── Frontend (Next.js) ────────────────────────────────────────────────────
   - type: web
