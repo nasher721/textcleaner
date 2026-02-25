@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+backend/mednotecleaner.db
+backend/models/
+frontend/node_modules/
+frontend/.next/
+playwright-report/

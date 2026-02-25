@@ -1,0 +1,565 @@
+{
+  "notes": [
+    {
+      "id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "raw_text": "ICU Day 2: Neuro exam awake follows commands. No focal deficit. CT head stable. Vent AC/VC FiO2 40% PEEP 5. MAP 72 on norepi 2 mcg/min. Lactate: 1.2. Continue cefepime. Central line placed. Assessment: improving shock.",
+      "meta": {
+        "patient": "seed"
+      }
+    },
+    {
+      "id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "raw_text": "Night shift: Sedated on propofol. Denies chest pain when awake. CXR shows bibasilar opacity. Off vasopressors, MAP 68. ABG pH:7.35 PaO2:80. Plan bronchoscopy tomorrow. History of COPD.",
+      "meta": {
+        "patient": "seed"
+      }
+    },
+    {
+      "id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "raw_text": "Morning rounds: GCS 14 pupils equal reactive. MRI brain no acute infarct. On PSV 10/5 FiO2 35. Without hypotension overnight. WBC:12.4 Cr:1.1. Started vancomycin. Procedure: arterial line insertion. Assessment severe sepsis resolved.",
+      "meta": {
+        "patient": "seed"
+      }
+    }
+  ],
+  "sentences": [
+    {
+      "id": "d3412d59-eda8-42db-998c-bf307fd91754",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 0,
+      "text": "ICU Day 2: Neuro exam awake follows commands",
+      "start_char": 0,
+      "end_char": 44
+    },
+    {
+      "id": "ac447202-d5b3-4979-ad3e-bad9391de6c7",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 1,
+      "text": "No focal deficit",
+      "start_char": 46,
+      "end_char": 62
+    },
+    {
+      "id": "3c68a932-8a86-4631-9516-5087de72f7c1",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 2,
+      "text": "CT head stable",
+      "start_char": 64,
+      "end_char": 78
+    },
+    {
+      "id": "e6fb7047-42a7-40c3-b51d-0674b06d3d9b",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 3,
+      "text": "Vent AC/VC FiO2 40% PEEP 5",
+      "start_char": 80,
+      "end_char": 106
+    },
+    {
+      "id": "f1572497-1f6d-450d-971b-e8ea4abc9a68",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 4,
+      "text": "MAP 72 on norepi 2 mcg/min",
+      "start_char": 108,
+      "end_char": 134
+    },
+    {
+      "id": "1f8cfbad-48eb-4dcd-859b-903e75da0910",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 5,
+      "text": "Lactate: 1",
+      "start_char": 136,
+      "end_char": 146
+    },
+    {
+      "id": "8b45c4a2-1068-4897-8a5a-c45bf49233f9",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 6,
+      "text": "2",
+      "start_char": 147,
+      "end_char": 148
+    },
+    {
+      "id": "11d3bc7c-ef00-4b6a-828a-6f93c18a172c",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 7,
+      "text": "Continue cefepime",
+      "start_char": 150,
+      "end_char": 167
+    },
+    {
+      "id": "117aeab7-5800-4bee-a156-c7c6d6efb6c3",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 8,
+      "text": "Central line placed",
+      "start_char": 169,
+      "end_char": 188
+    },
+    {
+      "id": "98bed03c-ebfc-4780-9a56-95da1fd5ac16",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "idx": 9,
+      "text": "Assessment: improving shock",
+      "start_char": 190,
+      "end_char": 217
+    },
+    {
+      "id": "9bb35413-c8b8-4456-91d9-91ba47ac267d",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 10,
+      "text": "Night shift: Sedated on propofol",
+      "start_char": 0,
+      "end_char": 32
+    },
+    {
+      "id": "4120bede-844d-453f-aa11-8c11505de8f3",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 11,
+      "text": "Denies chest pain when awake",
+      "start_char": 34,
+      "end_char": 62
+    },
+    {
+      "id": "2d6ec0a2-ab5d-4c45-8da6-0aa055a7e44f",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 12,
+      "text": "CXR shows bibasilar opacity",
+      "start_char": 64,
+      "end_char": 91
+    },
+    {
+      "id": "20712918-284c-4c1b-8df7-b8c9f1cb8c21",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 13,
+      "text": "Off vasopressors, MAP 68",
+      "start_char": 93,
+      "end_char": 117
+    },
+    {
+      "id": "d1f73beb-af93-4132-86ac-363b0a626ef0",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 14,
+      "text": "ABG pH:7",
+      "start_char": 119,
+      "end_char": 127
+    },
+    {
+      "id": "0dc6b137-bce1-4c35-9b51-9eb38c477a32",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 15,
+      "text": "35 PaO2:80",
+      "start_char": 128,
+      "end_char": 138
+    },
+    {
+      "id": "1572a42d-6260-4171-8731-558a4306883f",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 16,
+      "text": "Plan bronchoscopy tomorrow",
+      "start_char": 140,
+      "end_char": 166
+    },
+    {
+      "id": "a9ddc415-1a65-457d-9180-953c48d2dd83",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "idx": 17,
+      "text": "History of COPD",
+      "start_char": 168,
+      "end_char": 183
+    },
+    {
+      "id": "a4e907cf-a6b2-47c4-97f9-713e3b3dc98d",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 18,
+      "text": "Morning rounds: GCS 14 pupils equal reactive",
+      "start_char": 0,
+      "end_char": 44
+    },
+    {
+      "id": "9abc641c-2a51-47bb-9434-799497a3074d",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 19,
+      "text": "MRI brain no acute infarct",
+      "start_char": 46,
+      "end_char": 72
+    },
+    {
+      "id": "794b00c2-d40e-4d64-97b6-68cbb95f75f8",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 20,
+      "text": "On PSV 10/5 FiO2 35",
+      "start_char": 74,
+      "end_char": 93
+    },
+    {
+      "id": "981da4fa-14c1-4bc1-9846-0c21b4dcdf60",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 21,
+      "text": "Without hypotension overnight",
+      "start_char": 95,
+      "end_char": 124
+    },
+    {
+      "id": "be4d0b9a-87e7-4799-a068-6efa6ca2d74a",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 22,
+      "text": "WBC:12",
+      "start_char": 126,
+      "end_char": 132
+    },
+    {
+      "id": "c6807e70-68e6-45af-a631-30ef2d85922b",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 23,
+      "text": "4 Cr:1",
+      "start_char": 133,
+      "end_char": 139
+    },
+    {
+      "id": "da2c1514-42fb-4604-8c29-fc38b2762518",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 24,
+      "text": "1",
+      "start_char": 140,
+      "end_char": 141
+    },
+    {
+      "id": "34f54b7e-310e-4a67-9dfe-4e6cec927cf7",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 25,
+      "text": "Started vancomycin",
+      "start_char": 143,
+      "end_char": 161
+    },
+    {
+      "id": "c9745f72-5f79-48d5-be6d-d4b165b6d1d6",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 26,
+      "text": "Procedure: arterial line insertion",
+      "start_char": 163,
+      "end_char": 197
+    },
+    {
+      "id": "a1a0f524-d180-453c-beef-e79153108e69",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "idx": 27,
+      "text": "Assessment severe sepsis resolved",
+      "start_char": 199,
+      "end_char": 232
+    }
+  ],
+  "sentence_labels": [
+    {
+      "id": "833d2411-d3ec-45da-a682-e3977eb07635",
+      "sentence_id": "d3412d59-eda8-42db-998c-bf307fd91754",
+      "label": "KEEP"
+    },
+    {
+      "id": "ac00d157-d345-4b80-8970-ca7bf042143c",
+      "sentence_id": "ac447202-d5b3-4979-ad3e-bad9391de6c7",
+      "label": "REMOVE"
+    },
+    {
+      "id": "3779e386-715e-47c4-a0cd-c4b2be9fad17",
+      "sentence_id": "3c68a932-8a86-4631-9516-5087de72f7c1",
+      "label": "KEEP"
+    },
+    {
+      "id": "db206ad6-c822-44ab-98b4-c9ac21ac5958",
+      "sentence_id": "e6fb7047-42a7-40c3-b51d-0674b06d3d9b",
+      "label": "REMOVE"
+    },
+    {
+      "id": "7b770388-3d7d-49e5-803f-91d922cffd74",
+      "sentence_id": "f1572497-1f6d-450d-971b-e8ea4abc9a68",
+      "label": "KEEP"
+    },
+    {
+      "id": "cdd3703d-7e9b-47d9-8454-a10202e2ab11",
+      "sentence_id": "1f8cfbad-48eb-4dcd-859b-903e75da0910",
+      "label": "REMOVE"
+    },
+    {
+      "id": "f723aed0-c3f8-4f63-a148-30aacc860d56",
+      "sentence_id": "8b45c4a2-1068-4897-8a5a-c45bf49233f9",
+      "label": "KEEP"
+    },
+    {
+      "id": "fa86e56f-e585-4f48-8380-17a416b7a186",
+      "sentence_id": "11d3bc7c-ef00-4b6a-828a-6f93c18a172c",
+      "label": "REMOVE"
+    },
+    {
+      "id": "03584510-76a1-4c34-8d26-83504f98d9e5",
+      "sentence_id": "117aeab7-5800-4bee-a156-c7c6d6efb6c3",
+      "label": "KEEP"
+    },
+    {
+      "id": "8043e117-0bd8-4be1-b919-8cac0e190855",
+      "sentence_id": "98bed03c-ebfc-4780-9a56-95da1fd5ac16",
+      "label": "REMOVE"
+    },
+    {
+      "id": "a036c4e4-2bf5-46bd-9dc1-03d0d6414af8",
+      "sentence_id": "9bb35413-c8b8-4456-91d9-91ba47ac267d",
+      "label": "KEEP"
+    },
+    {
+      "id": "1b76eb43-4d37-4875-b863-444d54d8e53c",
+      "sentence_id": "4120bede-844d-453f-aa11-8c11505de8f3",
+      "label": "REMOVE"
+    },
+    {
+      "id": "8264f16a-9e21-4a7d-ad91-e7d15b521f85",
+      "sentence_id": "2d6ec0a2-ab5d-4c45-8da6-0aa055a7e44f",
+      "label": "KEEP"
+    },
+    {
+      "id": "1f8331fc-a7d6-4bd5-bac2-d45c0df796e8",
+      "sentence_id": "20712918-284c-4c1b-8df7-b8c9f1cb8c21",
+      "label": "REMOVE"
+    },
+    {
+      "id": "902d5b48-c639-4c6e-a272-087118bc2409",
+      "sentence_id": "d1f73beb-af93-4132-86ac-363b0a626ef0",
+      "label": "KEEP"
+    },
+    {
+      "id": "f78f2f41-4d86-4ae0-9588-569bd6555d2f",
+      "sentence_id": "0dc6b137-bce1-4c35-9b51-9eb38c477a32",
+      "label": "REMOVE"
+    },
+    {
+      "id": "ee5eed64-a348-49c0-8ede-79a6d01c18bf",
+      "sentence_id": "1572a42d-6260-4171-8731-558a4306883f",
+      "label": "KEEP"
+    },
+    {
+      "id": "9a7339f7-743a-48c0-b95a-c3165e96b4f2",
+      "sentence_id": "a9ddc415-1a65-457d-9180-953c48d2dd83",
+      "label": "REMOVE"
+    },
+    {
+      "id": "2630a929-551a-4fd6-bddf-aa0eff759111",
+      "sentence_id": "a4e907cf-a6b2-47c4-97f9-713e3b3dc98d",
+      "label": "KEEP"
+    },
+    {
+      "id": "baee639a-556e-4630-9cfc-ce76af43cc9e",
+      "sentence_id": "9abc641c-2a51-47bb-9434-799497a3074d",
+      "label": "REMOVE"
+    },
+    {
+      "id": "9f00c55b-1e73-43b5-b6a3-a817316c40d3",
+      "sentence_id": "794b00c2-d40e-4d64-97b6-68cbb95f75f8",
+      "label": "KEEP"
+    },
+    {
+      "id": "095f0d10-2e72-4199-b062-2cc09f379fbe",
+      "sentence_id": "981da4fa-14c1-4bc1-9846-0c21b4dcdf60",
+      "label": "REMOVE"
+    },
+    {
+      "id": "657ee14c-df1b-4d29-8c88-d0921a296f0b",
+      "sentence_id": "be4d0b9a-87e7-4799-a068-6efa6ca2d74a",
+      "label": "KEEP"
+    },
+    {
+      "id": "101755b5-395a-4e55-84e0-3c387c063363",
+      "sentence_id": "c6807e70-68e6-45af-a631-30ef2d85922b",
+      "label": "REMOVE"
+    },
+    {
+      "id": "86db029a-4727-47fe-9242-ae5bfd993290",
+      "sentence_id": "da2c1514-42fb-4604-8c29-fc38b2762518",
+      "label": "KEEP"
+    },
+    {
+      "id": "bcb93976-1e1f-43db-b65a-f34ebd0b3e9f",
+      "sentence_id": "34f54b7e-310e-4a67-9dfe-4e6cec927cf7",
+      "label": "REMOVE"
+    },
+    {
+      "id": "c7beeb0e-f467-4610-99f5-a5741c455287",
+      "sentence_id": "c9745f72-5f79-48d5-be6d-d4b165b6d1d6",
+      "label": "KEEP"
+    },
+    {
+      "id": "405ba4e0-90ea-4835-a885-c84295fb9a1a",
+      "sentence_id": "a1a0f524-d180-453c-beef-e79153108e69",
+      "label": "REMOVE"
+    },
+    {
+      "id": "caf55974-7954-4958-9b28-4948af844fd9",
+      "sentence_id": "d3412d59-eda8-42db-998c-bf307fd91754",
+      "label": "KEEP"
+    },
+    {
+      "id": "de04ec0c-b4de-4941-a339-586a9be772f5",
+      "sentence_id": "ac447202-d5b3-4979-ad3e-bad9391de6c7",
+      "label": "REMOVE"
+    }
+  ],
+  "span_annotations": [
+    {
+      "id": "d09b3429-4f92-40c6-971f-2f21bb42c13e",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "NEURO_EXAM",
+      "start_char": 11,
+      "end_char": 21,
+      "text": "Neuro exam"
+    },
+    {
+      "id": "84841cdc-ae38-4712-9d78-2eab2074b911",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "IMAGING",
+      "start_char": 64,
+      "end_char": 78,
+      "text": "CT head stable"
+    },
+    {
+      "id": "7edc9e9b-e854-4a77-a0f3-f4e2648da872",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "VENT",
+      "start_char": 80,
+      "end_char": 90,
+      "text": "Vent AC/VC"
+    },
+    {
+      "id": "682a0e04-5757-46d5-bb4e-53840f061f55",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "HEMODYNAMICS",
+      "start_char": 108,
+      "end_char": 124,
+      "text": "MAP 72 on norepi"
+    },
+    {
+      "id": "4a2e8fbd-0b24-4540-8f89-bbfcce04c318",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "LAB",
+      "start_char": 136,
+      "end_char": 148,
+      "text": "Lactate: 1.2"
+    },
+    {
+      "id": "f797855b-3804-4654-a7f0-25960280be82",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "MEDICATION",
+      "start_char": 159,
+      "end_char": 167,
+      "text": "cefepime"
+    },
+    {
+      "id": "d6f04780-9976-4f59-9e35-844cdcbfdf59",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "PROCEDURE",
+      "start_char": 169,
+      "end_char": 188,
+      "text": "Central line placed"
+    },
+    {
+      "id": "1db41cc4-85fa-4421-a686-dd2a0910c4cc",
+      "note_id": "e04232ca-5629-4a51-bab8-e3ae37350b52",
+      "label": "ASSESSMENT",
+      "start_char": 190,
+      "end_char": 217,
+      "text": "Assessment: improving shock"
+    },
+    {
+      "id": "1cb67b4b-8d0c-49c4-b13c-1d6380d2bac6",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "label": "IMAGING",
+      "start_char": 64,
+      "end_char": 91,
+      "text": "CXR shows bibasilar opacity"
+    },
+    {
+      "id": "9db638a8-3dc5-431d-ad51-4a68c07cc4f1",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "label": "HEMODYNAMICS",
+      "start_char": 111,
+      "end_char": 117,
+      "text": "MAP 68"
+    },
+    {
+      "id": "ae4c1640-c539-4265-a892-2d630ed5ffcb",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "label": "LAB",
+      "start_char": 119,
+      "end_char": 138,
+      "text": "ABG pH:7.35 PaO2:80"
+    },
+    {
+      "id": "e0068df4-0292-4d18-bb9a-fb52d5047b19",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "label": "MEDICATION",
+      "start_char": 24,
+      "end_char": 32,
+      "text": "propofol"
+    },
+    {
+      "id": "a8d2a0f5-e10b-40e0-9c89-f34645d5810a",
+      "note_id": "179ac48f-a2c3-4eaf-8339-f79339a96076",
+      "label": "PROCEDURE",
+      "start_char": 145,
+      "end_char": 157,
+      "text": "bronchoscopy"
+    },
+    {
+      "id": "013e0c2d-affd-4127-95cc-16c816da1906",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "NEURO_EXAM",
+      "start_char": 16,
+      "end_char": 22,
+      "text": "GCS 14"
+    },
+    {
+      "id": "314cb0dc-a583-4d3f-b05b-b4c6934f5d54",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "NEURO_EXAM",
+      "start_char": 23,
+      "end_char": 29,
+      "text": "pupils"
+    },
+    {
+      "id": "6082270b-9323-449e-96fd-bd743bdebda9",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "IMAGING",
+      "start_char": 46,
+      "end_char": 55,
+      "text": "MRI brain"
+    },
+    {
+      "id": "3a8a5046-f246-4aee-9b18-1a244b5d9be0",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "VENT",
+      "start_char": 77,
+      "end_char": 85,
+      "text": "PSV 10/5"
+    },
+    {
+      "id": "ed01e0ad-37ab-4c73-be7f-ba480c19207a",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "LAB",
+      "start_char": 126,
+      "end_char": 141,
+      "text": "WBC:12.4 Cr:1.1"
+    },
+    {
+      "id": "652fbb8e-8961-4394-8e70-153f9ca147a1",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "MEDICATION",
+      "start_char": 151,
+      "end_char": 161,
+      "text": "vancomycin"
+    },
+    {
+      "id": "75d25451-1b85-4bf3-bcb6-d0d3eeee1101",
+      "note_id": "8f608645-97f7-4823-8598-1948264d63bf",
+      "label": "PROCEDURE",
+      "start_char": 174,
+      "end_char": 197,
+      "text": "arterial line insertion"
+    }
+  ]
+}
