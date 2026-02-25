@@ -7,7 +7,7 @@ import { GlassCard } from '@/components/ui/GlassCard'
 
 export default function Batch() {
     const [inputText, setInputText] = useState('')
-    const [results, setResults] = useState<InferenceResult[]>([])
+    const [results, setResults] = useState<Array<{ input: string; result: InferenceResult }>>([])
     const [loading, setLoading] = useState(false)
 
     const processBatch = async () => {
@@ -16,7 +16,7 @@ export default function Batch() {
         setLoading(true)
         try {
             const resp = await api.inference.batch(lines)
-            setResults(resp.results)
+            setResults(lines.map((input, i) => ({ input, result: resp.results[i] })))
         } catch (error) {
             console.error('Batch failed:', error)
         } finally {
@@ -27,9 +27,9 @@ export default function Batch() {
     const downloadCSV = () => {
         const headers = ['Original', 'Cleaned', 'Findings']
         const rows = results.map(r => [
-            `"${r.raw_text.replace(/"/g, '""')}"`,
-            `"${r.cleaned_text.replace(/"/g, '""')}"`,
-            `"${JSON.stringify(r.structured_json).replace(/"/g, '""')}"`
+            `"${r.input.replace(/"/g, '""')}"`,
+            `"${r.result.cleaned_text.replace(/"/g, '""')}"`,
+            `"${JSON.stringify(r.result.structured_json).replace(/"/g, '""')}"`
         ].join(','))
         const csvContent = [headers.join(','), ...rows].join('\n')
         const blob = new Blob([csvContent], { type: 'text/csv' })
@@ -88,11 +88,11 @@ export default function Batch() {
                             <tbody className="divide-y divide-slate-800">
                                 {results.map((r, i) => (
                                     <tr key={i} className="hover:bg-slate-800/30 transition-colors group">
-                                        <td className="px-4 py-3 text-slate-500 font-mono truncate max-w-[200px]">{r.raw_text}</td>
-                                        <td className="px-4 py-3 text-slate-200">{r.cleaned_text.slice(0, 50)}...</td>
+                                        <td className="px-4 py-3 text-slate-500 font-mono truncate max-w-[200px]">{r.input}</td>
+                                        <td className="px-4 py-3 text-slate-200">{r.result.cleaned_text.slice(0, 50)}...</td>
                                         <td className="px-4 py-3">
                                             <div className="flex gap-1 flex-wrap">
-                                                {Object.keys(r.structured_json).map(k => (
+                                                {Object.keys(r.result.structured_json).map(k => (
                                                     <span key={k} className="px-1.5 py-0.5 bg-sky-500/10 text-sky-400 rounded text-[10px] uppercase font-bold border border-sky-500/10 group-hover:border-sky-500/30 transition-colors">
                                                         {k}
                                                     </span>

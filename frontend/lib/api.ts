@@ -30,7 +30,7 @@ export const api = {
     },
     notes: {
         all: () => request<Note[]>('/api/notes/all'),
-        search: (q: string) => request<Note[]>(`/api/notes/search?q=${q}`),
+        search: (q: string) => request<Note[]>(`/api/notes/search?q=${encodeURIComponent(q)}`),
     },
     inference: {
         run: (text: string, modelId?: string, threshold?: number) =>

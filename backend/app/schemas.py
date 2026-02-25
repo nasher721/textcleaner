@@ -1,18 +1,23 @@
-from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from pydantic import BaseModel, ConfigDict
+from typing import List, Optional
+
 
 class NoteCreate(BaseModel):
     text: str
 
+
 class InferRequest(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
     text: str
     model_version_id: Optional[str] = None
     keep_threshold: float = 0.5
+
 
 class FeedbackRequest(BaseModel):
     note_id: str
     sentence_id: str
     label: str
+
 
 class TrainRequest(BaseModel):
     base_model: str = "en_core_web_sm"
@@ -21,6 +26,7 @@ class TrainRequest(BaseModel):
     dropout: float = 0.2
     batch_size: int = 32
 
+
 class SpanCreate(BaseModel):
     note_id: str
     start: int
@@ -28,14 +34,18 @@ class SpanCreate(BaseModel):
     label: str
     text: str
 
+
 class SentenceLabelIn(BaseModel):
     sentence_id: str
     label: str
 
+
 class BatchInferRequest(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
     texts: List[str]
     model_version_id: Optional[str] = None
     keep_threshold: float = 0.5
+
 
 class LabelRequest(BaseModel):
     label: str

@@ -13,7 +13,7 @@ export function GlassCard({ children, className = '', title, subtitle }: GlassCa
             {(title || subtitle) && (
                 <div className="mb-4">
                     {title && <h3 className="text-lg font-bold text-slate-100">{title}</h3>}
-                    {subtitle && <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{subtitle}</p>}
+                    {subtitle && <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">{subtitle}</p>}
                 </div>
             )}
             {children}

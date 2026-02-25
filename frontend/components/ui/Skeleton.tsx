@@ -1,6 +1,13 @@
-export function Skeleton({ className = '' }: { className?: string }) {
+interface SkeletonProps {
+    className?: string;
+    variant?: 'rect' | 'circle';
+}
+
+export function Skeleton({ className = '', variant = 'rect' }: SkeletonProps) {
     return (
-        <div className={`bg-slate-800 animate-pulse rounded ${className}`} />
+        <div
+            className={`bg-slate-800 animate-pulse ${variant === 'circle' ? 'rounded-full' : 'rounded'} ${className}`}
+        />
     );
 }
 
