@@ -1,46 +1,41 @@
-from typing import Any, Literal
-from pydantic import BaseModel, Field
-
-SentenceLabelType = Literal["KEEP", "REMOVE"]
-SpanLabelType = Literal[
-    "NEURO_EXAM", "IMAGING", "VENT", "HEMODYNAMICS", "LAB", "MEDICATION", "PROCEDURE", "ASSESSMENT", "OTHER"
-]
-
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
 
 class NoteCreate(BaseModel):
-    raw_text: str
-    source: str = "paste"
-    meta: dict[str, Any] | None = None
-
-
-class SentenceLabelIn(BaseModel):
-    label: SentenceLabelType
-
-
-class SpanCreate(BaseModel):
-    start_char: int = Field(ge=0)
-    end_char: int = Field(gt=0)
-    label: SpanLabelType
-
-
-class TrainRequest(BaseModel):
-    base_model: str = "en"
-    max_steps: int = 200
-    lr: float = 0.001
-
+    text: str
 
 class InferRequest(BaseModel):
     text: str
-    model_version_id: str | None = None
-    keep_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
-
-
-class BatchInferRequest(BaseModel):
-    texts: list[str] = Field(min_length=1, max_length=100)
-    model_version_id: str | None = None
-    keep_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
-
+    model_version_id: Optional[str] = None
+    keep_threshold: float = 0.5
 
 class FeedbackRequest(BaseModel):
-    input_text: str
-    corrections: dict[str, Any]
+    note_id: str
+    sentence_id: str
+    label: str
+
+class TrainRequest(BaseModel):
+    base_model: str = "en_core_web_sm"
+    max_steps: int = 200
+    lr: float = 0.001
+    dropout: float = 0.2
+    batch_size: int = 32
+
+class SpanCreate(BaseModel):
+    note_id: str
+    start: int
+    end: int
+    label: str
+    text: str
+
+class SentenceLabelIn(BaseModel):
+    sentence_id: str
+    label: str
+
+class BatchInferRequest(BaseModel):
+    texts: List[str]
+    model_version_id: Optional[str] = None
+    keep_threshold: float = 0.5
+
+class LabelRequest(BaseModel):
+    label: str

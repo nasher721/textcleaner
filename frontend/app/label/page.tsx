@@ -1,11 +1,132 @@
 'use client'
-import { useState } from 'react'
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
-const labels=["NEURO_EXAM","IMAGING","VENT","HEMODYNAMICS","LAB","MEDICATION","PROCEDURE","ASSESSMENT","OTHER"]
-export default function Label(){
-  const [text,setText]=useState(''); const [noteId,setNoteId]=useState(''); const [sentences,setSentences]=useState<any[]>([])
-  const create=async()=>{const n=await fetch(`${API}/api/notes`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({raw_text:text})}).then(r=>r.json());setNoteId(n.note_id);const s=await fetch(`${API}/api/notes/${n.note_id}/segment`,{method:'POST'}).then(r=>r.json());setSentences(s)}
-  const labelSent=(id:string,label:string)=>fetch(`${API}/api/sentences/${id}/label`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({label})})
-  const addSpan=()=>{const sel=window.getSelection(); if(!sel||!noteId||!sel.toString())return; const full=text; const st=full.indexOf(sel.toString()); if(st<0)return; const label=prompt('Label? '+labels.join(','))||'OTHER'; fetch(`${API}/api/notes/${noteId}/spans`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({start_char:st,end_char:st+sel.toString().length,label})})}
-  return <div className='space-y-3'><h1 className='text-xl font-bold'>Label Notes</h1><textarea rows={8} value={text} onChange={e=>setText(e.target.value)} /><button onClick={create}>Create + Segment</button><div onMouseUp={addSpan} className='bg-white p-3 border'>{text}</div>{sentences.map(s=><div key={s.id} className='bg-white p-2 border mt-2'><div>{s.text}</div><div className='flex gap-2'><button onClick={()=>labelSent(s.id,'KEEP')}>KEEP</button><button className='bg-red-600' onClick={()=>labelSent(s.id,'REMOVE')}>REMOVE</button></div></div>)}</div>
+
+import { useState, useCallback, useEffect } from 'react'
+import { api } from '@/lib/api'
+import { Note } from '@/lib/types'
+import { GlassCard } from '@/components/ui/GlassCard'
+
+export default function Label() {
+  const [sentences, setSentences] = useState<any[]>([])
+  const [activeIdx, setActiveIdx] = useState(0)
+  const [loading, setLoading] = useState(true)
+
+  const loadData = useCallback(async () => {
+    try {
+      const data = await api.labeling.sentences()
+      setSentences(data)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => { loadData() }, [loadData])
+
+  const labelSent = useCallback(async (idx: number, label: string) => {
+    if (!sentences[idx]) return
+    const id = sentences[idx].id
+
+    // Optimistic update
+    const newSentences = [...sentences]
+    newSentences[idx] = { ...newSentences[idx], last_label: label }
+    setSentences(newSentences)
+
+    await api.labeling.submit(id, label)
+
+    if (idx < sentences.length - 1) {
+      setActiveIdx(idx + 1)
+    }
+  }, [sentences])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (document.activeElement?.tagName === 'TEXTAREA') return
+
+      if (e.key.toLowerCase() === 'k') labelSent(activeIdx, 'KEEP')
+      if (e.key.toLowerCase() === 'r') labelSent(activeIdx, 'REMOVE')
+      if (e.key === 'ArrowDown' && activeIdx < sentences.length - 1) setActiveIdx(activeIdx + 1)
+      if (e.key === 'ArrowUp' && activeIdx > 0) setActiveIdx(activeIdx - 1)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeIdx, sentences, labelSent])
+
+  if (loading) return <div className="text-center py-20 text-slate-500">Loading pipeline...</div>
+
+  const progress = Math.round((sentences.filter(s => s.last_label).length / sentences.length) * 100) || 0
+
+  return (
+    <div className="space-y-6 max-w-4xl mx-auto">
+      <header className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-100">Data Curation</h1>
+          <p className="text-slate-400">Classify sentences to improve model accuracy.</p>
+        </div>
+        <div className="text-right">
+          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Session Progress</div>
+          <div className="flex items-center gap-3">
+            <span className="text-xl font-bold text-emerald-400">{progress}%</span>
+            <div className="w-32 bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div
+                className="bg-emerald-500 h-full transition-all duration-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="space-y-4">
+        {sentences.map((s, i) => (
+          <GlassCard
+            key={s.id}
+            className={`transition-all duration-200 cursor-pointer border-l-4 ${activeIdx === i ? 'border-l-sky-500 bg-slate-800/80 scale-[1.02] shadow-xl' :
+                s.last_label === 'KEEP' ? 'border-l-emerald-500/50' :
+                  s.last_label === 'REMOVE' ? 'border-l-rose-500/50' : 'border-l-transparent opacity-60'
+              }`}
+          >
+            <div className="flex items-start gap-6">
+              <div className="flex flex-col items-center gap-2">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${activeIdx === i ? 'bg-sky-500 text-white border-sky-400' : 'bg-slate-900 text-slate-500 border-slate-700'
+                  }`}>
+                  {i + 1}
+                </div>
+              </div>
+
+              <div className="flex-1 space-y-4">
+                <p className={`text-lg leading-relaxed ${activeIdx === i ? 'text-slate-100' : 'text-slate-400'}`}>
+                  {s.text}
+                </p>
+
+                {activeIdx === i && (
+                  <div className="flex items-center gap-3 pt-2">
+                    <button
+                      onClick={() => labelSent(i, 'KEEP')}
+                      className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-xs font-bold uppercase tracking-widest transition-all"
+                    >
+                      [K] Keep
+                    </button>
+                    <button
+                      onClick={() => labelSent(i, 'REMOVE')}
+                      className="px-4 py-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 rounded-lg text-xs font-bold uppercase tracking-widest transition-all"
+                    >
+                      [R] Remove
+                    </button>
+                    <span className="text-[10px] text-slate-500 ml-auto italic">Use K/R hotkeys or arrows</span>
+                  </div>
+                )}
+              </div>
+
+              {s.last_label && (
+                <div className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest ${s.last_label === 'KEEP' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'
+                  }`}>
+                  {s.last_label}
+                </div>
+              )}
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+    </div>
+  )
 }
