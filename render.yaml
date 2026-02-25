@@ -6,10 +6,6 @@ services:
     dockerfilePath: ./docker/backend.Dockerfile
     plan: free
     healthCheckPath: /api/dashboard/stats
-    disk:
-      name: sqlite-data
-      mountPath: /app/data
-      sizeGB: 1
     envVars:
       - key: PORT
         value: "8000"
