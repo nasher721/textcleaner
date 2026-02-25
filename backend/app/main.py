@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import db, init_db, new_id, now_iso, row_to_dict, seed_data_if_empty
 from .inference import infer_text
 from .nlp import detect_negated, detect_temporal, segment_text
-from .schemas import FeedbackRequest, InferRequest, NoteCreate, SentenceLabelIn, SpanCreate, TrainRequest
+from .schemas import BatchInferRequest, FeedbackRequest, InferRequest, NoteCreate, SentenceLabelIn, SpanCreate, TrainRequest
 from .training import train_all
 
 app = FastAPI(title="MedNoteCleaner API")
@@ -148,7 +148,35 @@ def get_model(model_version_id: str):
 
 @app.post("/api/infer")
 def infer(req: InferRequest):
-    return infer_text(req.text, req.model_version_id)
+    return infer_text(req.text, req.model_version_id, req.keep_threshold)
+
+
+@app.post("/api/infer/batch")
+def infer_batch(req: BatchInferRequest):
+    results = [
+        infer_text(text, req.model_version_id, req.keep_threshold)
+        for text in req.texts
+    ]
+    return {
+        "count": len(results),
+        "results": results,
+    }
+
+
+@app.get("/api/inference-runs")
+def list_inference_runs(limit: int = 20, offset: int = 0):
+    with db() as conn:
+        rows = conn.execute(
+            "SELECT * FROM inference_runs ORDER BY created_at DESC LIMIT ? OFFSET ?",
+            (limit, offset),
+        ).fetchall()
+    out = []
+    for row in rows:
+        rec = row_to_dict(row)
+        rec["output_json"] = json.loads(rec["output_json"])
+        rec["confidence_json"] = json.loads(rec["confidence_json"])
+        out.append(rec)
+    return out
 
 
 @app.post("/api/feedback")

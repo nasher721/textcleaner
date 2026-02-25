@@ -25,7 +25,7 @@ def _load_model(model_version_id: str | None):
     return rec["id"], sent_model, nlp
 
 
-def infer_text(text: str, model_version_id: str | None = None) -> dict[str, Any]:
+def infer_text(text: str, model_version_id: str | None = None, keep_threshold: float = 0.5) -> dict[str, Any]:
     model_id, sent_model, ner_nlp = _load_model(model_version_id)
     warnings = []
     sents = segment_text(text)
@@ -41,7 +41,7 @@ def infer_text(text: str, model_version_id: str | None = None) -> dict[str, Any]
 
     for s, p in zip(sents, probs):
         sentence_keep_probs.append({"sentence": s["text"], "prob_keep": float(p)})
-        if p >= 0.5:
+        if p >= keep_threshold:
             keep_texts.append(text[s["start_char"]: s["end_char"]])
 
     entities = []
@@ -79,4 +79,10 @@ def infer_text(text: str, model_version_id: str | None = None) -> dict[str, Any]
         "structured_json": structured_json,
         "confidence": confidence,
         "warnings": warnings,
+        "meta": {
+            "model_version_id": model_id,
+            "keep_threshold": keep_threshold,
+            "kept_sentence_count": len(keep_texts),
+            "total_sentence_count": len(sents),
+        },
     }
