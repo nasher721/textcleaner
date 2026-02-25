@@ -12,10 +12,20 @@ from app.database import db, row_to_dict, init_db, seed_data_if_empty
 
 def cmd_infer(args):
     text = Path(args.input).read_text()
-    out = infer_text(text, None if args.model == 'latest' else args.model)
+    out = infer_text(text, None if args.model == 'latest' else args.model, args.keep_threshold)
     Path(args.out).write_text(json.dumps(out, indent=2))
     Path(args.cleaned).write_text(out['cleaned_text'])
 
+
+
+
+def cmd_infer_batch(args):
+    texts = [line.strip() for line in Path(args.input).read_text().splitlines() if line.strip()]
+    out = [
+        infer_text(text, None if args.model == 'latest' else args.model, args.keep_threshold)
+        for text in texts
+    ]
+    Path(args.out).write_text(json.dumps({"count": len(out), "results": out}, indent=2))
 
 def cmd_train(args):
     out = train_all(max_steps=args.max_steps, lr=0.001, base_model='en')
@@ -33,7 +43,8 @@ def main():
     init_db(); seed_data_if_empty()
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest='cmd', required=True)
-    i = sub.add_parser('infer'); i.add_argument('--model', default='latest'); i.add_argument('--in', dest='input', required=True); i.add_argument('--out', required=True); i.add_argument('--cleaned', required=True); i.set_defaults(func=cmd_infer)
+    i = sub.add_parser('infer'); i.add_argument('--model', default='latest'); i.add_argument('--in', dest='input', required=True); i.add_argument('--out', required=True); i.add_argument('--cleaned', required=True); i.add_argument('--keep-threshold', type=float, default=0.5); i.set_defaults(func=cmd_infer)
+    b = sub.add_parser('infer-batch'); b.add_argument('--model', default='latest'); b.add_argument('--in', dest='input', required=True); b.add_argument('--out', required=True); b.add_argument('--keep-threshold', type=float, default=0.5); b.set_defaults(func=cmd_infer_batch)
     t = sub.add_parser('train'); t.add_argument('--max-steps', type=int, default=2000); t.set_defaults(func=cmd_train)
     e = sub.add_parser('export'); e.add_argument('--out', required=True); e.set_defaults(func=cmd_export)
     a = p.parse_args(); a.func(a)

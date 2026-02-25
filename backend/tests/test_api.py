@@ -41,5 +41,21 @@ def test_training_produces_model_version_row():
 
 def test_inference_schema_no_hallucinated_keys():
     out = client.post('/api/infer', json={"text":"MAP 70 on norepi. No focal deficit."}).json()
-    assert set(out.keys()) == {"cleaned_text", "structured_json", "confidence", "warnings"}
+    assert set(out.keys()) == {"cleaned_text", "structured_json", "confidence", "warnings", "meta"}
     assert "unknown" not in out['structured_json']
+
+
+def test_batch_inference_and_runs_endpoint():
+    payload = {"texts": ["Patient awake.", "No focal deficits."], "keep_threshold": 0.4}
+    out = client.post('/api/infer/batch', json=payload)
+    assert out.status_code == 200
+    body = out.json()
+    assert body['count'] == 2
+    assert len(body['results']) == 2
+    for result in body['results']:
+        assert result['meta']['keep_threshold'] == 0.4
+
+    runs = client.get('/api/inference-runs?limit=5').json()
+    assert len(runs) >= 2
+    assert isinstance(runs[0]['output_json'], dict)
+    assert isinstance(runs[0]['confidence_json'], dict)

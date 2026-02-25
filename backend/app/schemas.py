@@ -32,6 +32,13 @@ class TrainRequest(BaseModel):
 class InferRequest(BaseModel):
     text: str
     model_version_id: str | None = None
+    keep_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
+
+
+class BatchInferRequest(BaseModel):
+    texts: list[str] = Field(min_length=1, max_length=100)
+    model_version_id: str | None = None
+    keep_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
 
 
 class FeedbackRequest(BaseModel):
