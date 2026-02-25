@@ -2,26 +2,26 @@ services:
   # ─── Backend API (FastAPI / uvicorn) ───────────────────────────────────────
   - type: web
     name: textcleaner-api
-    runtime: docker
-    dockerfilePath: ./docker/backend.Dockerfile
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     plan: free
     healthCheckPath: /api/dashboard/stats
     envVars:
       - key: PORT
         value: "8000"
+      - key: PYTHON_VERSION
+        value: "3.10"
 
-  # ─── Frontend (Next.js – production standalone build) ──────────────────────
+  # ─── Frontend (Next.js) ────────────────────────────────────────────────────
   - type: web
     name: textcleaner-frontend
-    runtime: docker
-    dockerfilePath: ./docker/frontend.Dockerfile
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
     plan: free
-    dockerContext: .
     envVars:
       - key: PORT
         value: "3000"
-      # IMPORTANT: Set this to the backend Render URL after first deploy.
-      # Format: https://textcleaner-api.onrender.com
-      # Next.js bakes NEXT_PUBLIC_* at BUILD time, so this must be set before building.
       - key: NEXT_PUBLIC_API_URL
         sync: false
